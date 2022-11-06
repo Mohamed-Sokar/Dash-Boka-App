@@ -1,10 +1,11 @@
-import LoginScreen from './login';
+import LoginScreen from './Login';
 import OnboardingScreen from './onboarding';
 import ProviderEmailScreen from './providerEmail';
-import ProviderPasswordScreen from './providerPassword';
+import ProviderPasswordScreen from './ProviderPassword';
 import ConfirmAccountScreen from './confirmAccount';
-import RecoverPasswordScreen from './recoverPasswrod';
+import RecoverPasswordScreen from './RecoverPasswrod';
 import SetPasswordScreen from './setPassword';
+import HomeScreen from './Home';
 
 export {
   LoginScreen,
@@ -14,4 +15,5 @@ export {
   ConfirmAccountScreen,
   RecoverPasswordScreen,
   SetPasswordScreen,
+  HomeScreen,
 };

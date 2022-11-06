@@ -1,5 +1,7 @@
 import React, {FC} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Alert} from 'react-native';
+import {Formik} from 'formik';
+import {signUp} from '../../AWS';
 import {
   DescriptionText,
   Button,
@@ -11,28 +13,49 @@ import {useNavigation} from '@react-navigation/native';
 import {ProviderEmailScreenNavigationProps} from '../../navigation/type';
 
 const ProviderEmail: FC = () => {
-  const {navigate, goBack} =
-    useNavigation<ProviderEmailScreenNavigationProps>();
+  const {navigate} = useNavigation<ProviderEmailScreenNavigationProps>();
   return (
-    <View style={styles.container}>
-      <View style={styles.wrapper}>
-        <DescriptionText
-          mainText="Become a Provider On Boka"
-          descText="Welcome to Boka! Enter your email or Phone to get started."
-        />
-        <InputField title="Email / Phone" placeholder="example@email.com" />
-        <Desc />
-        <Button title="Continue" onPress={() => navigate('ProviderPassword')} />
-      </View>
-      <View>
-        <SocialMedia
-          title="Create using"
-          leftText="Already have account?"
-          linkText=" Login"
-          onPress={() => navigate('Login')}
-        />
-      </View>
-    </View>
+    <Formik
+      initialValues={{
+        email: '',
+      }}
+      onSubmit={values => navigate('ProviderPassword', {email: values.email})}>
+      {({
+        values,
+        handleChange,
+        errors,
+        setFieldTouched,
+        touched,
+        isValid,
+        handleSubmit,
+      }) => (
+        <View style={styles.container}>
+          <View style={styles.wrapper}>
+            <DescriptionText
+              mainText="Become a Provider On Boka"
+              descText="Welcome to Boka! Enter your email or Phone to get started."
+            />
+            <InputField
+              title="Email / Phone"
+              placeholder="example@email.com"
+              value={values.email}
+              onChangeText={handleChange('email')}
+              onBlur={() => setFieldTouched('email')}
+            />
+            <Desc />
+            <Button title="Continue" onPress={handleSubmit} />
+          </View>
+          <View>
+            <SocialMedia
+              title="Create using"
+              leftText="Already have account?"
+              linkText=" Login"
+              onPress={() => navigate('Login')}
+            />
+          </View>
+        </View>
+      )}
+    </Formik>
   );
 };
 export default ProviderEmail;

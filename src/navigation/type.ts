@@ -4,10 +4,11 @@ export type RootStackParamList = {
   Onboarding: undefined;
   Login: undefined;
   ProviderEmail: undefined;
-  ProviderPassword: undefined;
-  ConfirmAccount: undefined;
+  ProviderPassword: {email: string};
+  ConfirmAccount: {username: string};
   RecoverPassword: undefined;
-  SetPassword: undefined;
+  SetPassword: {email: string};
+  Home: undefined;
 };
 
 export type OnboardingScreenNavigationProp = NativeStackNavigationProp<
@@ -37,4 +38,8 @@ export type RecoverPasswordScreenNavigationProp = NativeStackNavigationProp<
 export type SetPasswordScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'SetPassword'
+>;
+export type HomeScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
 >;

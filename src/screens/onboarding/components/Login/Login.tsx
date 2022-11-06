@@ -6,16 +6,21 @@ import {OnboardingScreenNavigationProp} from '../../../../navigation/type';
 import styles from './styles';
 
 const Login: FC = ({}) => {
-  const {navigate, goBack} = useNavigation<OnboardingScreenNavigationProp>();
+  const {navigate} = useNavigation<OnboardingScreenNavigationProp>();
 
   return (
     <>
       <View style={styles.button}>
         <Button title="login" onPress={() => navigate('Login')} />
       </View>
-      <TouchableOpacity onPress={() => navigate('ProviderEmail')}>
+      <Button
+        style={styles.text}
+        title="Become a provider"
+        onPress={() => navigate('ProviderEmail')}
+      />
+      {/* <TouchableOpacity onPress={() => navigate('ProviderEmail')}>
         <Text style={styles.text}>Become a provider</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </>
   );
 };
